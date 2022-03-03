@@ -27,13 +27,16 @@ class TempCRUD:
 
         self.session.add(new_temp)
         self.session.commit()
+        self.session.refresh(new_temp)
+        return new_temp
 
     def delete_temp_by_id(self, id):
 
-        temp_to_delete = self.read_all_temp(id)
+        temp_to_delete = self.read_temp_by_id(id)
 
-        self.session.delete(temp_to_delete)
-        self.session.commit()
+        if temp_to_delete:
+            self.session.delete(temp_to_delete)
+            self.session.commit()
 
     def read_all_temp(self):
 
@@ -41,9 +44,4 @@ class TempCRUD:
 
     def read_temp_by_id(self, id):
 
-        return (
-            self.session.query(Temp.id, Temp.number)
-            .select_from(Temp)
-            .filter(Temp.id == id)
-            .first()
-        )
+        return self.session.query(Temp).filter(Temp.id == id).first()

@@ -4,6 +4,10 @@ from db.db import Base
 from pydantic import BaseModel
 
 
+class Newtemp(BaseModel):
+    number: int
+
+
 class Temp(Base):
 
     __tablename__ = "Temp"

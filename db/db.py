@@ -1,5 +1,6 @@
 import sqlite3
 import logging
+import os
 
 from sqlalchemy.engine import Engine
 from sqlalchemy import create_engine
@@ -70,4 +71,11 @@ def create_migration(db_file, message):
     log.info(f"SQLlite Version: {sqlite3.version}")
     conn.close()
 
-    run_alembic(f"sqlite:///./{db_file}", ["revision", "--autogenerate", "-m", message])
+    path = os.curdir + "/db/alembic/versions"
+    isExist = os.path.exists(path)
+    if not isExist:
+        os.makedirs(path)
+
+    run_alembic(
+        f"sqlite:///./{db_file}", ["revision", "--autogenerate", "-m", message]
+    )
