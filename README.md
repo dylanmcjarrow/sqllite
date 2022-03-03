@@ -12,12 +12,6 @@ A db project using SQLite, SQlAlchemy and fastapi
 python3 -m venv .venv && source ./.venv/bin/activate
 ```
 
-- configure env variables
-
-```
-cp ./conf/conf.env ./.env
-```
-
 ### Enviroment (Windows)
 
 - Make sure you have virtualenv
