@@ -16,15 +16,11 @@ log = logging.getLogger(__name__)
 
 
 def run_app():
-    # for session in database.get_db():
-    #     temp_crud = TempCRUD(session)
-    #     temp_crud.create_temp(6)
-    #     print(jsonable_encoder(temp_crud.read_all_temp()))
 
     run(
         app,
         host="0.0.0.0",
-        port=3000,  # reload=True,
+        port=3000,
         log_config=None,
     )
 
