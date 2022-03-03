@@ -4,27 +4,52 @@ A db project using SQLite, SQlAlchemy and fastapi
 
 ## Getting Started
 
+### Enviroment (Linux)
+
+- First create virtual enviroment and activate the enviroment
+
+```
+python3 -m venv .venv && source ./.venv/bin/activate
+```
+
+### Enviroment (Windows)
+
+- Make sure you have virtualenv
+
+```
+pip install virtualenv
+```
+
 - First create virtual enviroment
 
 ```
-python3 -m venv .venv
+virtualenv --python C:\Path\To\Python\python.exe venv
+```
+
+- Activate the enviroment
+
+```
+.\venv\Scripts\activate
 ```
 
 ### Dependencies
 
-- Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-- ex. Windows 10
+- To save dependancies
 
-### Installing
+```
+pip freeze > requirements.txt
+```
 
-- How/where to download your program
-- Any modifications needed to be made to files/folders
+- To install dependancies
+
+```
+pip install -r requirements.txt
+```
 
 ### Executing program
 
-- How to run the program
-- Step-by-step bullets
+- To run
 
 ```
-code blocks for commands
+python -m main -h
 ```
