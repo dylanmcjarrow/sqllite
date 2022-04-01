@@ -49,7 +49,10 @@ pip install -r requirements.txt
 ### Executing program
 
 - To run
-
+```
+python -m main -ir
+```
+- help
 ```
 python -m main -h
 ```
