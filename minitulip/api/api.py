@@ -3,7 +3,7 @@ from pkgutil import walk_packages
 import sys
 import logging
 
-from api import routers
+from minitulip.api import routers
 
 app = FastAPI()
 log = logging.getLogger(__name__)
@@ -25,7 +25,7 @@ def collect_routers():
     for loader, name, is_pkg in walk_packages(package.__path__):
 
         router = import_from(
-            f"api.routers.{name}",
+            f"minitulip.api.routers.{name}",
             "router",
         )
         if router is not None:

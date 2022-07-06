@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer
-from db.db import Base
+from minitulip.db.db import Base
 
 from pydantic import BaseModel
 

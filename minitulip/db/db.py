@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from typing import Generator
 from sqlalchemy.orm.session import Session
 
-from db.alembic.alembic_runner import run_alembic
+from minitulip.db.alembic.alembic_runner import run_alembic
 
 log = logging.getLogger(__name__)
 
@@ -76,6 +76,4 @@ def create_migration(db_file, message):
     if not isExist:
         os.makedirs(path)
 
-    run_alembic(
-        f"sqlite:///./{db_file}", ["revision", "--autogenerate", "-m", message]
-    )
+    run_alembic(f"sqlite:///./{db_file}", ["revision", "--autogenerate", "-m", message])

@@ -50,9 +50,17 @@ pip install -r requirements.txt
 
 - To run
 ```
-python -m main -ir
+python -m minitulip.app -ir
 ```
 - help
 ```
-python -m main -h
+python -m minitulip.app -h
+```
+### Database
+- To create a new revision
+```
+python -m minitulip.app -m
+```- To run
+```
+python -m minitulip.app -ir
 ```

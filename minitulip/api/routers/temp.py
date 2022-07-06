@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
-from db.crud.temp_crud import TempCRUD
-from db.models.temp import Newtemp
+from minitulip.db.crud.temp_crud import TempCRUD
+from minitulip.db.models.temp import Newtemp
 
 router = APIRouter()
 

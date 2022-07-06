@@ -6,8 +6,8 @@ from sqlalchemy import desc
 from sqlalchemy.orm.session import Session
 from sqlalchemy.sql import expression
 
-from db.db import get_db
-from db.models.temp import Temp
+from minitulip.db.db import get_db
+from minitulip.db.models.temp import Temp
 
 log = logging.getLogger(__name__)
 

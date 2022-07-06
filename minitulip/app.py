@@ -1,14 +1,14 @@
 from os import getenv
 from sys import argv
 import sys
-from db.crud.temp_crud import TempCRUD
-import db.db as database
+from minitulip.db.crud.temp_crud import TempCRUD
+import minitulip.db.db as database
 from dotenv import load_dotenv
 import argparse
 import logging
 from sqlalchemy_utils import database_exists
 from fastapi.encoders import jsonable_encoder
-from api.api import app
+from minitulip.api.api import app
 from uvicorn.main import run
 
 load_dotenv()
@@ -30,33 +30,37 @@ def main():
     parser = argparse.ArgumentParser(
         description="SQLite, SQLAlchemy and fast API backend."
     )
+    parser.add_argument("-r", "--run", action="store_true", help="run the backend")
     parser.add_argument(
-        "-r", "--run", action="store_true", help="run the backend"
+        "-u",
+        "--update",
+        action="store_true",
+        help="run migration and update tables in database",
+    )
+    parser.add_argument(
+        "-c",
+        "--create_revision",
+        action="store_true",
+        help="create migration revision",
     )
     parser.add_argument(
         "-m",
-        "--migrate",
-        action="store_true",
-        help="create tables for database",
-    )
-    parser.add_argument(
-        "-u",
-        "--upgrade_revision",
-        action="store_true",
-        help="create migrate revision",
-    )
-    parser.add_argument(
-        "-i", "--info", action="store_true", help="print out info logs"
-    )
-    parser.add_argument(
         "--message",
         required="--argument" in sys.argv,
-        help="add message to revision",
+        help="use with -u  to add message to revision",
+    )
+    parser.add_argument(
+        "-i",
+        "--info",
+        action="store_true",
+        help="print out info logs",
     )
 
     args = parser.parse_args()
 
+    print(f"Logging: {'enabled' if args.info else 'disabled'}")
     if args.info:
+
         logging.basicConfig(level=logging.INFO)
         args.info = False
 
@@ -76,10 +80,10 @@ def main():
             sys.exit(1)
         run_app()
 
-    if args.migrate:
+    if args.update:
         database.migrate_tables(db_url)
 
-    if args.upgrade_revision:
+    if args.create_revision:
         message = ""
         if args.message:
             message = args.message
@@ -89,4 +93,5 @@ def main():
 
 if __name__ == "__main__":
 
+    print("**MINITULIP**")
     main()
