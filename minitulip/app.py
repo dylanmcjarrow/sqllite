@@ -47,7 +47,7 @@ def main():
         "-m",
         "--message",
         required="--argument" in sys.argv,
-        help="use with -u  to add message to revision",
+        help="use with -c  to add message to revision",
     )
     parser.add_argument(
         "-i",
@@ -58,7 +58,6 @@ def main():
 
     args = parser.parse_args()
 
-    print(f"Logging: {'enabled' if args.info else 'disabled'}")
     if args.info:
 
         logging.basicConfig(level=logging.INFO)
@@ -75,9 +74,12 @@ def main():
         engine = database.init_db(db_url)
 
         if not database_exists(engine.url):
-            log.error("Database not created yet, run with -m, --migrate")
+            log.error("Database not created yet, run with -u, --update")
             parser.print_help()
             sys.exit(1)
+
+        print("**MINITULIP**")
+        print(f"Logging: {'enabled' if args.info else 'disabled'}")
         run_app()
 
     if args.update:
@@ -93,5 +95,4 @@ def main():
 
 if __name__ == "__main__":
 
-    print("**MINITULIP**")
     main()
