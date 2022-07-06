@@ -57,10 +57,15 @@ python -m minitulip.app -ir
 python -m minitulip.app -h
 ```
 ### Database
-- To create a new revision
+- To create a new revision, after creating your table in db.models run this command to create an alembic revision
 ```
-python -m minitulip.app -m
-```- To run
+python -m minitulip.app -c
+// or 
+python -m minitulip.app -c -m "REVISION MESSAGE"
+
 ```
-python -m minitulip.app -ir
+
+- To update and mirate you database.db us -u (This will also create the db if it is not present) 
+```
+python -m minitulip.app -u
 ```
